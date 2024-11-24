@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Page</title>
+  <style>
+    /* General Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-y: auto;  /* Allow vertical scrolling */
+      height: auto; /* Let the body expand with content */
+    }
+
+    /* Hearts Background */
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: rgba(255, 105, 180, 0.8);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      animation: float 3s infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+
+    .heart:nth-child(odd) {
+      background-color: rgba(255, 20, 147, 0.8);
+    }
+
+    /* Bullet Point Styling */
+    ul {
+      list-style-type: disc;
+      margin-left: 30px;
+      font-size: 18px;
+      color: #ff85c1;
+    }
+
+    /* Paragraph Styling */
+    #paragraph {
+      font-size: 24px;
+      margin: 50px;
+      line-height: 1.6;
+      text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4;
+    }
+
+    #paragraph span {
+      color: #ff69b4;
+    }
+
+    /* Heading Styling */
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 50px;
+      text-shadow: 0 0 5px #ff69b4, 0 0 15px #ff69b4;
+    }
+
+    /* Button Styling */
+    #stayButton {
+      display: block;
+      margin: 50px auto;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    #stayButton:hover {
+      background-color: #ff85c1;
+      box-shadow: 0px 0px 30px rgba(255, 105, 180, 0.9);
+    }
+
+    /* Animated Hearts */
+    .heart-animation {
+      animation: heart-float 6s linear infinite;
+    }
+
+    @keyframes heart-float {
+      0% { top: 100%; left: 50%; }
+      50% { top: 10%; left: 20%; }
+      100% { top: 100%; left: 80%; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Heading Section -->
+  <h1>Welcome to 18 years of Life</h1>
+
+  <!-- Paragraph Section -->
+  <div id="paragraph">
+    <p><span>Mowaaaa</span> ni life oka beautiful book.</p>
+    <p>Nitho chala cheppali mowa nv na life lo ki rakamundu daka i was just having a feeling for a best frnd to share everything and take ideas and do worst things together. You filled that gap, nv na life lo ki vachinapudu nen ela unnano teleedu gani nv na life lo ki vachinapudu matram u are in depressed state of a idiot on pvp road. Starting lo nin chusinapudu bayamesindi i thought u are a rough gurl but u are a good one. Manam epudu ela frnds ayyamo teleedu gani nik problem vasthe first nen gurthostha nak em badha vesina first nen nike text chesta, you filled all my gaps. Nen enduku epdu antha cool ga untano telsa mowa nen inthaku mundu aa pvp road idiot kante 100tyms kopam naku, Literally nak apudu ardam kala nen na gamefrnd ni anna matalu anni nin aa idiot annad nv nannu manchodni anukuntunav nar nenu okapudu aa idiot kante darunam ga unna. Ala unapudu no body stayed with me everybody left slowly I became alone and i decided evaru enni anna be silent otherwise u will loose them ani. Ika aa roju nundi nen MR.COOL ayipoya maybe na ee version mi andariki happy ga undi ante nak inka happy nannu preminche valu naku dorikaru .Nv ipudu inka 18years ye mowa nik inka chaala life undi mundu nv ikkade agipokudadu. Aa idiot lanti valani nv chala mandini face cheyali mowa make u r heart stronger and start ur life of 18+ ala ani 18+vi chudak. Nitho nen enni days untano teleedu mowa kani unna anni rojulu I wont make u led down u r always my princess. Andari la ne nenu ni bday ani msgs anukoku nak nv 365days queen ve and I will make ur every bday special to me and for u from this year. Nen cheskon ante kudarad cheskovalsinde thappadh wait for my next year gifts hehe.. Love u Mowaaaa </p>
+    
+    <p>మీరు నా జీవితంలో ఉన్నందుకు నేను ఎప్పటికీ కృతజ్ఞుణ్ణి. మీరు నాకు అందించిన స్నేహం, ప్రేమ, మరియు మద్దతు అపూర్వమైనది. మీరు ప్రపంచంలోనే అద్భుతమైన అమ్మాయి! మీ జన్మదినం హార్దిక శుభాకాంక్షలు, మీరు ఎప్పటికీ సంతోషంగా, ఆరోగ్యంగా ఉండాలని కోరుకుంటున్నాను!</p>
+  </div>
+
+  <!-- Stay Button -->
+  <button id="stayButton" onclick="stayOnPage()">All The best cutie pie</button>
+
+  <!-- Hearts Background Animation -->
+  <div id="hearts"></div>
+
+  <script>
+    // Function to keep the user on the page
+    function stayOnPage() {
+      alert('We are so glad you decided to stay!');
+    }
+
+    // Generating moving hearts in the background
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = Math.random() * 5 + 2 + 's'; // Random floating speed
+        heart.style.animationDelay = Math.random() * 5 + 's'; // Random start delay
+        document.body.appendChild(heart);
+      }
+    }
+
+    createHearts(); // Call function to create hearts on page load
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Page</title>
+  <style>
+    /* Body styling */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: Verdana, sans-serif;
+      font-size: 24px;
+      overflow: hidden;
+    }
+
+    /* Canvas styling */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Allows clicks to pass through */
+    }
+
+    /* Heart and message */
+    .heart {
+      margin-left: 10px;
+      font-size: 30px;
+    }
+
+    /* Birthday message styling */
+    #birthdayMessage {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      font-family: Verdana, sans-serif;
+      color: #fff;
+      text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4;
+      z-index: 1000;
+    }
+
+    /* Open button styling */
+    #openButton {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: Verdana, sans-serif;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #openButton:hover {
+      background-color: #ff85c1;
+    }
+  </style>
+</head>
+<body>
+  Love u mowa <span class="heart">🫰</span>
+  <canvas id="c"></canvas>
+
+  <!-- Centered Box -->
+  <div id="messageBox">
+    <div id="birthdayMessage">Idi Kuda Nokkeyyy Mowaaaa!</div>
+    <button id="openButton">OPEN</button>
+  </div>
+
+  <script>
+    // Redirect on "OPEN" button click
+    document.getElementById('openButton').addEventListener('click', function () {
+      window.location.href = 'new.html';
+    });
+
+    // Balloon animation script
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const balloons = [];
+    const colors = ['#FF69B4', '#FF85C1', '#FFD1DC', '#FFF0F5', '#FFC0CB'];
+
+    function createBalloon() {
+      const x = Math.random() * canvas.width;
+      const size = Math.random() * 20 + 10;
+      const speed = Math.random() * 2 + 1;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      balloons.push({ x, y: canvas.height, size, speed, color });
+    }
+
+    function drawBalloon(balloon) {
+      ctx.beginPath();
+      ctx.arc(balloon.x, balloon.y, balloon.size, 0, Math.PI * 2);
+      ctx.fillStyle = balloon.color;
+      ctx.fill();
+    }
+
+    function updateBalloons() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = balloons.length - 1; i >= 0; i--) {
+        const balloon = balloons[i];
+        balloon.y -= balloon.speed;
+        if (balloon.y + balloon.size < 0) {
+          balloons.splice(i, 1);
+        } else {
+          drawBalloon(balloon);
+        }
+      }
+    }
+
+    function animate() {
+      updateBalloons();
+      requestAnimationFrame(animate);
+    }
+
+    setInterval(createBalloon, 300);
+    animate();
+
+    // Adjust canvas size on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
